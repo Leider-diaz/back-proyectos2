@@ -1,7 +1,7 @@
 package com.soft2.sistemacompras.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -11,13 +11,15 @@ import java.io.Serializable;
  * @author Leider
  */
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "DETALLE_PEDIDO")
 public class DetallePedido implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = -4002163868271124000L;
+    private static final long serialVersionUID = -5373589849346451203L;
 
     //Atributos
     @Id
@@ -36,10 +38,12 @@ public class DetallePedido implements Serializable {
 
 
     //Relaciones
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PRODUCTO", insertable = false, updatable = false)
     private Producto producto;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PEDIDO", insertable = false, updatable = false)
     private Pedido pedido;

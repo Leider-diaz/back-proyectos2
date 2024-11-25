@@ -1,7 +1,6 @@
 package com.soft2.sistemacompras.model;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -12,13 +11,15 @@ import java.math.BigDecimal;
  * @author Leider
  */
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "PRODUCTO", schema = "SISTEMACOMPRA")
 public class Producto implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = -7984374846961150578L;
+    private static final long serialVersionUID = -1400606624174325804L;
 
     //Atributos
     @Id

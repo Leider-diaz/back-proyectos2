@@ -1,11 +1,14 @@
 package com.soft2.sistemacompras.controller;
 
+import com.soft2.sistemacompras.dto.PedidoDTO;
 import com.soft2.sistemacompras.model.Pedido;
 import com.soft2.sistemacompras.service.interfaces.IPedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin("*")
@@ -22,6 +25,11 @@ public class PedidoController {
     @PostMapping("/realizarPedidoCarrito")
     public ResponseEntity<Pedido> realizarPedidoCarrito(@RequestParam(value = "idUsuario") Long idUsuario){
         return new ResponseEntity<>(pedidoService.realizarPedidoCarrito(idUsuario), HttpStatus.OK);
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<List<PedidoDTO>> getPedidos(){
+        return new ResponseEntity<>(pedidoService.getPedidoDTO(), HttpStatus.OK);
     }
 
     @Autowired

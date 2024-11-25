@@ -1,5 +1,7 @@
 package com.soft2.sistemacompras.service.impl;
 
+import com.soft2.sistemacompras.dto.PedidoDTO;
+import com.soft2.sistemacompras.dto.ProductoDTO;
 import com.soft2.sistemacompras.model.DetallePedido;
 import com.soft2.sistemacompras.model.Pedido;
 import com.soft2.sistemacompras.model.ProductosCarrito;
@@ -7,6 +9,10 @@ import com.soft2.sistemacompras.repository.*;
 import com.soft2.sistemacompras.service.interfaces.IPedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class PedidoServiceImpl implements IPedidoService {
@@ -84,6 +90,34 @@ public class PedidoServiceImpl implements IPedidoService {
 
         this.productosCarritoRepository.deleteAll(productosCarrito);
         return pedido;
+    }
+
+    @Override
+    public List<PedidoDTO> getPedidoDTO(){
+        List<PedidoDTO> pedidosDTO = new ArrayList<>();
+        var pedidosBD = this.pedidoRepository.findAll();
+
+        for (Pedido pedido: pedidosBD){
+            PedidoDTO pedidoDTO = new PedidoDTO();
+            pedidoDTO.setId(pedido.getId());
+            pedidoDTO.setStatus(pedido.getEstados().getNombre());
+            pedidoDTO.setDate(pedido.getFecha());
+            pedidoDTO.setStore(pedido.getTienda());
+            BigDecimal total = new BigDecimal(0);
+            List<ProductoDTO> productoDTOList = new ArrayList<>();
+            for (DetallePedido detallePedido : pedido.getDetallePedidoList()){
+                ProductoDTO productoDTO = new ProductoDTO();
+                productoDTO.setPrice(detallePedido.getProducto().getPrecio());
+                productoDTO.setQuantity(detallePedido.getCantidad());
+                productoDTO.setProduct_name(detallePedido.getProducto().getNombre());
+                total = total.add(detallePedido.getProducto().getPrecio());
+                productoDTOList.add(productoDTO);
+            }
+            pedidoDTO.setTotal_price(total);
+            pedidoDTO.setProducts(productoDTOList);
+            pedidosDTO.add(pedidoDTO);
+        }
+        return pedidosDTO;
     }
 
     @Autowired

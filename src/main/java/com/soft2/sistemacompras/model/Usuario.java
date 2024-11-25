@@ -36,4 +36,5 @@ public class Usuario implements Serializable {
     @Column(name = "USERNAME")
     private String username;
 
+
 }
