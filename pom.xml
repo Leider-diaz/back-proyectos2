@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.soft2</groupId>
-    <artifactId>sistemaCompras</artifactId>
+    <artifactId>sistemacompras</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>sistemaCompras</name>
-    <description>sistemaCompras</description>
+    <name>sistemacompras</name>
+    <description>sistemacompras</description>
     <url/>
     <licenses>
         <license/>
