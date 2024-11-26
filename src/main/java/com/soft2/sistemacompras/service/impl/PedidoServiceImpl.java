@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -41,6 +42,8 @@ public class PedidoServiceImpl implements IPedidoService {
 
         pedido.setIdEstado(estado.getId());
         pedido.setIdUsuario(idUsuario);
+        pedido.setFecha(new Date());
+        pedido.setTienda("3B");
         var pedidoSave = this.pedidoRepository.save(pedido);
 
         detallePedido.setIdPedido(pedidoSave.getId());
