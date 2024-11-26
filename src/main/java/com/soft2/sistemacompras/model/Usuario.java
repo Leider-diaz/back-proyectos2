@@ -1,9 +1,11 @@
 package com.soft2.sistemacompras.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Formula;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -36,5 +38,8 @@ public class Usuario implements Serializable {
     @Column(name = "USERNAME")
     private String username;
 
+    @JsonIgnore
+    @Formula("NOMBRE || ' ' || APELLIDO")
+    private String nombreApellidos;
 
 }

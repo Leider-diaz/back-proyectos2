@@ -106,6 +106,7 @@ public class PedidoServiceImpl implements IPedidoService {
             pedidoDTO.setStatus(pedido.getEstados().getNombre());
             pedidoDTO.setDate(pedido.getFecha());
             pedidoDTO.setStore(pedido.getTienda());
+            pedidoDTO.setCostumer_name(pedido.getUsuario().getNombreApellidos());
             BigDecimal total = new BigDecimal(0);
             List<ProductoDTO> productoDTOList = new ArrayList<>();
             for (DetallePedido detallePedido : pedido.getDetallePedidoList()){
