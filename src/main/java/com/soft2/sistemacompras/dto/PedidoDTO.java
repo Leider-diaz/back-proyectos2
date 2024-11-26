@@ -20,7 +20,7 @@ public class PedidoDTO implements Serializable {
     private Date date;
     private String status;
     private String store;
-    private String costumer_name;
+    private String customer_name;
     private BigDecimal total_price;
     private List<ProductoDTO> products;
 }
