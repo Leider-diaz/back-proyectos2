@@ -114,7 +114,7 @@ public class PedidoServiceImpl implements IPedidoService {
                 productoDTO.setPrice(detallePedido.getProducto().getPrecio());
                 productoDTO.setQuantity(detallePedido.getCantidad());
                 productoDTO.setProduct_name(detallePedido.getProducto().getNombre());
-                total = total.add(detallePedido.getProducto().getPrecio());
+                total = total.add(detallePedido.getProducto().getPrecio().multiply(new BigDecimal(detallePedido.getCantidad())));
                 productoDTOList.add(productoDTO);
             }
             pedidoDTO.setTotal_price(total);
