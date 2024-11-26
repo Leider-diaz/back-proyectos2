@@ -39,7 +39,7 @@ public class Usuario implements Serializable {
     private String username;
 
     @JsonIgnore
-    @Formula("NOMBRES || ' ' || APELLIDOS")
+    @Formula(value = "TRIM(NOMBRES) || ' ' || TRIM(APELLIDOS)")
     private String nombreApellidos;
 
 }
