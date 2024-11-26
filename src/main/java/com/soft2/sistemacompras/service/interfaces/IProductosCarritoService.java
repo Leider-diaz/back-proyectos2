@@ -10,6 +10,10 @@ public interface IProductosCarritoService {
 
     void addProducto(Long idProducto, Long cantidad, Long idUsuario);
 
+    void deleteUnProducto(Long idProducto, Long idUsuario);
+
+    void addUnProducto(Long idProducto, Long idUsuario);
+
     List<ProductosCarrito> getProductosCarrito(Long idUsuario);
 
     void deleteProductoCarrito(Long idProductoCarrito);

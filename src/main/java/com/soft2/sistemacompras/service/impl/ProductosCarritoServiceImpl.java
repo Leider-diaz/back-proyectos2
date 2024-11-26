@@ -31,6 +31,26 @@ public class ProductosCarritoServiceImpl implements IProductosCarritoService {
     }
 
     @Override
+    public void addUnProducto(Long idProducto, Long idUsuario){
+        var productoExist = productosCarritoRepository.findByIdUsuarioAndIdProducto(idUsuario, idProducto).orElse(null);
+        productoExist.setCantidad(productoExist.getCantidad() + 1L);
+        productosCarritoRepository.save(productoExist);
+    }
+
+    @Override
+    public void deleteUnProducto(Long idProducto, Long idUsuario){
+        var productoExist = productosCarritoRepository.findByIdUsuarioAndIdProducto(idUsuario, idProducto).orElse(null);
+        var cantidadModificado = productoExist.getCantidad() - 1L;
+        if(cantidadModificado == 0L){
+            productosCarritoRepository.delete(productoExist);
+        } else {
+            productoExist.setCantidad(productoExist.getCantidad() - 1L);
+            productosCarritoRepository.save(productoExist);
+        }
+
+    }
+
+    @Override
     public List<ProductosCarrito> getProductosCarrito(Long idUsuario){
         return this.productosCarritoRepository.findAllByIdUsuario(idUsuario);
     }

@@ -28,6 +28,20 @@ public class ProductosCarritoController {
         return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
     }
 
+    @PostMapping("/addUn")
+    public ResponseEntity<Boolean> addUnProductoCarrito(@RequestParam(value = "idUsuario") Long idUsuario,
+                                                       @RequestParam(value = "idProducto") Long idProducto){
+        this.productosCarritoService.addUnProducto(idProducto,idUsuario);
+        return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
+    }
+
+    @PostMapping("/deleteUn")
+    public ResponseEntity<Boolean> deleteUnProductoCarrito(@RequestParam(value = "idUsuario") Long idUsuario,
+                                                        @RequestParam(value = "idProducto") Long idProducto){
+        this.productosCarritoService.deleteUnProducto(idProducto,idUsuario);
+        return new ResponseEntity<>(Boolean.TRUE, HttpStatus.OK);
+    }
+
     @DeleteMapping("/delete/{idProductoCarrito}")
     public ResponseEntity<Boolean> deleteProductosCarrito(@PathVariable(value = "idProductoCarrito") Long idProductoCarrito){
         this.productosCarritoService.deleteProductoCarrito(idProductoCarrito);
