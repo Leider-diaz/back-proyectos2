@@ -14,7 +14,7 @@ public class ProductoServiceImpl implements IProductoService {
 
     @Override
     public List<Producto> getProductos(){
-        var productos = productoRepository.findAll();
+        var productos = productoRepository.findAllProductos();
         return productos;
     }
 
